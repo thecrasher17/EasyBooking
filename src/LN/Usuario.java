@@ -15,21 +15,25 @@ public class Usuario {
 	private String Aeropuerto_ident = null;
 	private String nombre = null;
 	private String apellido = null;
+	private String apellido2 = null;
 	private String email = null;
 	private String sistema_auto = null;
+	private String pago = null;
 	
 	@Element(column="FK_USUARIO")
 	ArrayList <Reserva> reservas= new ArrayList<Reserva>();
 	
 	
-	public Usuario (String Aeropuerto_ident, String dni, String nombre,String apellido, String email, String sistema_auto, ArrayList <Reserva> reservas  )
+	public Usuario (String Aeropuerto_ident, String dni, String nombre,String apellido, String apellido2, String email, String sistema_auto, String pago, ArrayList <Reserva> reservas  )
 	{
 		this.Aeropuerto_ident=Aeropuerto_ident;
 		this.dni =dni;
 		this.nombre=nombre;
 		this.apellido = apellido;
+		this.apellido2 = apellido2;
 		this.email=email;
 		this.sistema_auto=sistema_auto;
+		this.pago=pago;
 		this.reservas=reservas;
 	}
 
@@ -91,6 +95,26 @@ public class Usuario {
 
 	public void setSistema_auto(String sistema_auto) {
 		this.sistema_auto = sistema_auto;
+	}
+
+
+	public String getApellido2() {
+		return apellido2;
+	}
+
+
+	public void setApellido2(String apellido2) {
+		this.apellido2 = apellido2;
+	}
+
+
+	public String getPago() {
+		return pago;
+	}
+
+
+	public void setPago(String pago) {
+		this.pago = pago;
 	}
 	
 	
