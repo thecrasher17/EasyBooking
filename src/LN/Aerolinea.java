@@ -1,4 +1,4 @@
-package es.deusto.ingenieria.jdo.easybooking;
+package LN;
 
 import java.util.ArrayList;
 

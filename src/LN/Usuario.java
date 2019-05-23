@@ -1,4 +1,4 @@
-package es.deusto.ingenieria.jdo.easybooking;
+package LN;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,7 @@ public class Usuario {
 	
 	@PrimaryKey
 	private String dni = null;
+	private String contrasena = null;
 	private String Aeropuerto_ident = null;
 	private String nombre = null;
 	private String apellido = null;
@@ -24,10 +25,12 @@ public class Usuario {
 	ArrayList <Reserva> reservas= new ArrayList<Reserva>();
 	
 	
-	public Usuario (String Aeropuerto_ident, String dni, String nombre,String apellido, String apellido2, String email, String sistema_auto, String pago, ArrayList <Reserva> reservas  )
+	public Usuario ( String dni, String contrasena, String Aeropuerto_ident, String nombre,String apellido, String apellido2, String email, String sistema_auto, String pago, ArrayList <Reserva> reservas  )
 	{
-		this.Aeropuerto_ident=Aeropuerto_ident;
+		
 		this.dni =dni;
+		this.contrasena = contrasena;
+		this.Aeropuerto_ident=Aeropuerto_ident;
 		this.nombre=nombre;
 		this.apellido = apellido;
 		this.apellido2 = apellido2;
@@ -115,6 +118,16 @@ public class Usuario {
 
 	public void setPago(String pago) {
 		this.pago = pago;
+	}
+
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	
 	

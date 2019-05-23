@@ -1,4 +1,4 @@
-package es.deusto.ingenieria.jdo.easybooking;
+package LN;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
