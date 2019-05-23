@@ -24,20 +24,20 @@ public class AS_Acceso
 		
 		for (Usuario usuario1 : usuarios )
 		{
-			if(usuario1 == usuario)
+			if(usuario1.getDni().equals(usuario.getDni()))
 			{
 				System.out.println("El usuario está ya registrado");
 				return false;
 			}else
 			{
-				
+				DAO.GuardarObjeto(usuario);
 			}
 		}
 		DAO.GuardarObjeto(usuario);
 		return true;
 	}
 	
-	public boolean acceder (String usuario, String contrasena, String sistema_auto) throws RemoteException
+	public Usuario acceder (String usuario, String contrasena, String sistema_auto) throws RemoteException
 	{
 		System.out.println("  * Accediendo a tu cuenta '" + usuario + "'");
 		return gateway.acceder(usuario, contrasena, sistema_auto);

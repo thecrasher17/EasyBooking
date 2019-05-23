@@ -8,13 +8,15 @@ public class Reserva {
 	
 	@PrimaryKey 
 	private int Reservacodigo = 0;
-	private String pasajerodni = null;
+	private String pasajeroemail = null;
+	private int codigopago;
 	
 	
-	public Reserva (int Reservacodigo,String pasajerodni ) 
+	public Reserva (int Reservacodigo,String pasajerodni, int codigopago ) 
 	{
 		this.Reservacodigo=Reservacodigo;
-		this.pasajerodni=pasajerodni;
+		this.pasajeroemail=pasajerodni;
+		this.codigopago=codigopago;
 		
 		
 		
@@ -32,13 +34,23 @@ public class Reserva {
 	}
 
 
-	public String getPasajerodni() {
-		return pasajerodni;
+	public String getPasajeroemail() {
+		return pasajeroemail;
 	}
 
 
-	public void setPasajerodni(String pasajerodni) {
-		this.pasajerodni = pasajerodni;
+	public void setPasajeroemail(String pasajeroemail) {
+		this.pasajeroemail = pasajeroemail;
+	}
+
+
+	public int getCodigopago() {
+		return codigopago;
+	}
+
+
+	public void setCodigopago(int codigopago) {
+		this.codigopago = codigopago;
 	}
 
 }

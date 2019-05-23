@@ -11,13 +11,14 @@ import javax.jdo.annotations.PrimaryKey;
 public class Usuario {
 	
 	@PrimaryKey
+	private String email = null;
 	private String dni = null;
-	private String contrasena = null;
+	//private String contrasena = null;
 	private String Aeropuerto_ident = null;
 	private String nombre = null;
 	private String apellido = null;
 	private String apellido2 = null;
-	private String email = null;
+	
 	private String sistema_auto = null;
 	private String pago = null;
 	
@@ -25,11 +26,10 @@ public class Usuario {
 	ArrayList <Reserva> reservas= new ArrayList<Reserva>();
 	
 	
-	public Usuario ( String dni, String contrasena, String Aeropuerto_ident, String nombre,String apellido, String apellido2, String email, String sistema_auto, String pago, ArrayList <Reserva> reservas  )
+	public Usuario ( String dni,  String Aeropuerto_ident, String nombre,String apellido, String apellido2, String email, String sistema_auto, String pago, ArrayList <Reserva> reservas  )
 	{
 		
 		this.dni =dni;
-		this.contrasena = contrasena;
 		this.Aeropuerto_ident=Aeropuerto_ident;
 		this.nombre=nombre;
 		this.apellido = apellido;
@@ -121,14 +121,6 @@ public class Usuario {
 	}
 
 
-	public String getContrasena() {
-		return contrasena;
-	}
-
-
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
 	
 	
 }

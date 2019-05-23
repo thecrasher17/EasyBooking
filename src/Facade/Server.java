@@ -22,7 +22,8 @@ public class Server extends UnicastRemoteObject implements IServer
 	
 	public boolean registrar (Usuario usuario) throws RemoteException
 	{
-		
+		AS_Acceso appAcceso = new AS_Acceso();
+		appAcceso.registrar(usuario);
 		return false;
 	}
 	
@@ -40,11 +41,11 @@ public class Server extends UnicastRemoteObject implements IServer
 		return vuelos;
 	}
 	
-	public int pagar(String user,String password,double precio, String sistema_pago)
+	public void pagar(String user,String password,double precio, String sistema_pago) throws RemoteException 
 	{
 		int codigo=0;
-		//AS_Pago appPago = new AS_Pago ();
-		//appPago.pagar(user, password, precio, sistema_pago);
+		AS_Pago appPago = new AS_Pago ();
+		appPago.pagar(user, password, precio, sistema_pago);
 		return codigo;
 		
 		
