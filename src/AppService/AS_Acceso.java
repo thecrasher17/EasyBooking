@@ -17,29 +17,53 @@ public class AS_Acceso
 		this.gateway = new Gateway();
 	}
 	
-	public boolean registrar (Usuario usuario) throws RemoteException
+	public boolean registrar (Usuario usuario, String contrasena)
 	{
 		ArrayList <Usuario> usuarios = new ArrayList <Usuario> ();
 		usuarios=DAO.LeerUsuario();
-		
-		for (Usuario usuario1 : usuarios )
+		try 
 		{
-			if(usuario1.getDni().equals(usuario.getDni()))
+			if (gateway.acceder(usuario.getEmail(), contrasena, usuario.getPago()))
 			{
-				System.out.println("El usuario está ya registrado");
-				return false;
-			}else
-			{
+				for (Usuario usuario1 : usuarios )
+				{
+					if(usuario1.getEmail().equals(usuario.getEmail()))
+					{
+						System.out.println("El usuario está ya registrado");
+						return false;
+					}
+				}
 				DAO.GuardarObjeto(usuario);
+				return true;
 			}
+		} 
+		catch (RemoteException e) 
+		{
+			e.printStackTrace();
 		}
-		DAO.GuardarObjeto(usuario);
-		return true;
+		return false;
 	}
 	
-	public Usuario acceder (String usuario, String contrasena, String sistema_auto) throws RemoteException
+	public Usuario InicioSesion (String usuario, String contrasena, String sistema_auto) throws RemoteException
 	{
 		System.out.println("  * Accediendo a tu cuenta '" + usuario + "'");
-		return gateway.acceder(usuario, contrasena, sistema_auto);
+		gateway.acceder(usuario, contrasena, sistema_auto);
+		
+		ArrayList <Usuario> usuarios = new ArrayList <Usuario> ();
+		usuarios=DAO.LeerUsuario();
+		Usuario user=null;
+		
+		if (gateway.acceder(usuario, contrasena, sistema_auto))
+		{
+			for (Usuario usuario1 : usuarios )
+			{
+				if(usuario1.getEmail().equals(usuario))
+				{
+					user=usuario1;
+				}
+			}
+		}
+		return user;
+		
 	}
 }

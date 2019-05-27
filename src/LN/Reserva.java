@@ -4,25 +4,29 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class Reserva {
+public class Reserva 
+{
 	
 	@PrimaryKey 
 	private int Reservacodigo = 0;
 	private String pasajeroemail = null;
 	private int codigopago;
 	
+	private int contador=0;
 	
-	public Reserva (int Reservacodigo,String pasajerodni, int codigopago ) 
+	public Reserva (String pasajerodni, int codigopago ) 
 	{
-		this.Reservacodigo=Reservacodigo;
+		this.Reservacodigo=getCodigo();
 		this.pasajeroemail=pasajerodni;
 		this.codigopago=codigopago;
-		
-		
-		
-		
 	}
 
+	
+	public int getCodigo()
+	{
+		contador = contador++;
+		return contador;
+	}
 
 	public int getReservacodigo() {
 		return Reservacodigo;

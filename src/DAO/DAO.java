@@ -82,7 +82,7 @@ public class DAO {
 			{
 				transaction.rollback();
 			}   
-			persistentManager.close();
+			//persistentManager.close();
 		}	
 		
 		
@@ -124,7 +124,7 @@ public class DAO {
 			{
 				transaction.rollback();
 			}   
-			persistentManager.close();
+			//persistentManager.close();
 		}	
 		
 		
@@ -165,7 +165,7 @@ public class DAO {
 			{
 				transaction.rollback();
 			}   
-			persistentManager.close();
+			//persistentManager.close();
 		}	
 		
 		
@@ -205,7 +205,7 @@ public class DAO {
 			{
 				transaction.rollback();
 			}   
-			persistentManager.close();
+			//persistentManager.close();
 		}	
 		
 		
@@ -246,13 +246,15 @@ public class DAO {
 			{
 				transaction.rollback();
 			}   
-			persistentManager.close();
+			//persistentManager.close();
 		}	
 		
 		
 		
 		return vuelos;
 	}
+	
+	
 	
 	public static void cerrarBD()
 	{

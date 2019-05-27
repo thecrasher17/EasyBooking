@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import AppService.AS_Acceso;
 import AppService.AS_Pago;
+import AppService.AS_Vuelos;
 import Facade.IServer;
 import LN.Vuelo;
 import LN.Usuario;
@@ -20,34 +21,40 @@ public class Server extends UnicastRemoteObject implements IServer
 	private static final long serialVersionUID = 1L;
 
 	
-	public boolean registrar (Usuario usuario) throws RemoteException
+	public boolean registrar (Usuario usuario, String contrasena) throws RemoteException
 	{
 		AS_Acceso appAcceso = new AS_Acceso();
-		appAcceso.registrar(usuario);
+		appAcceso.registrar(usuario, contrasena);
 		return false;
 	}
 	
-	public boolean acceder (String usuario, String contrasena, String sistema_auto) throws RemoteException
+	public Usuario inicioSesion (String usuario, String contrasena, String sistema_auto) throws RemoteException
 	{
 		AS_Acceso appAcceso = new AS_Acceso ();
-		appAcceso.acceder(usuario, contrasena, sistema_auto);
-		return false;
+		Usuario user= appAcceso.InicioSesion(usuario, contrasena, sistema_auto);
+		return user;
 	}
 	
 	public LinkedList<Vuelo> getVuelos(String aer_origen, String aer_destino, String fecha_salida, String fecha_llegada) throws RemoteException
 	{
 		LinkedList<Vuelo> vuelos=null;
-		//AS_Vuelos
+		AS_Vuelos appVuelo = new AS_Vuelos();
+		vuelos = appVuelo.getVuelos(aer_origen, aer_destino, fecha_salida, fecha_llegada);
 		return vuelos;
 	}
-	
-	public void pagar(String user,String password,double precio, String sistema_pago) throws RemoteException 
+
+	@Override
+	public int pagar(String user, String dato, double precio,String sistema_pago) throws RemoteException 
 	{
-		int codigo=0;
-		AS_Pago appPago = new AS_Pago ();
-		appPago.pagar(user, password, precio, sistema_pago);
-		return codigo;
-		
+		AS_Pago appPago = new AS_Pago();
+		return appPago.pagar(user, dato, precio, sistema_pago);
+	}
+
+	@Override
+	public void reservar(String codVuelo, String email, int cod_pago) throws RemoteException 
+	{
+		AS_Pago appPago = new AS_Pago();
+		appPago.reservar(codVuelo, email, cod_pago);
 		
 	}
 }
