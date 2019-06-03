@@ -3,7 +3,12 @@
     <property name="src.dir" location="src"/>
     <property name="bin.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
+	<property name="dist.dir" location="dist"/>
+	<property name="rmiregistry.port" value="1099"/> 
+	<property name="rmiregistry.IP" value="127.0.0.1"/> 
+	<property name="easybooking.server.name" value="EasyBookings"/>
 	<property name="resources.dir" location="resources"/>
+	<property name="policy.file" location="security/java.policy"/> 
 		
     <path id="classpath">
         <fileset dir="${lib.dir}">
@@ -43,7 +48,7 @@
     </target>
 
 	<target name="4.run-example" description="Runs the example">
-        <java classname="Facade.Main" classpathref="classpath" fork="true">
+        <java classname="Facade.Server" classpathref="classpath" fork="true">
         	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		</java>
     </target>
@@ -57,4 +62,41 @@
             </fileset>
         </schematool>
 	</target>
+	
+	<target name="7.export" depends="1.compile" description="Export classes into a .jar file">
+			<delete dir="${dist.dir}"/>
+			<mkdir dir="${dist.dir}"/>
+			<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/IServer.class"/>
+	</target>
+	
+	<target name="8.run-server" depends="1.compile" description="Runs EasyBooking Server">
+			<java classname="Facade.Server" classpathref="classpath" fork="true">
+	        	<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
+				<jvmarg value="-Djava.security.policy=${policy.file}"/>			
+	        	<arg value="${rmiregistry.IP}"/> 
+		 		<arg value="${rmiregistry.port}"/> 
+				<arg value="${easybooking.server.name}"/> 
+	        </java>
+    </target>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </project>
